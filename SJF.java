@@ -36,6 +36,9 @@ public class SJF implements Algorithm
          */
         Process p = processesToSchedule.remove();
         readyQueue.add(p);
+        if (CPU.getCurrentTime() < p.getArrivalTime()) {
+            CPU.advanceTimeTo(p.getArrivalTime());
+        }
 
         while (true) {
             if (processesToSchedule.isEmpty()) break;
